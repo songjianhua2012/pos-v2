@@ -1,19 +1,14 @@
-function Scanner(itemA) {
-  this.barcode = getBarcode(itemA);
-  this.count   = getCount(itemA);
+function Scanner() {
+  this.barcode = '';
+  this.count = 0;
 }
 
-function getBarcode(itemA) {
-  var barcode=itemA.split('-');
-  return barcode[0];
-}
-
-function getCount(itemA) {
-  var count=itemA.split('-');
-  if(!isNaN(count[1])) {
-    return count[1];
-  }
+Scanner.prototype.addItem = function(item) {
+  var str = item.split('-');
+  this.barcode = str[0];
+  if(!isNaN(str[1]))
+      this.count = parseInt(str[1]);
   else {
-    return 1;
+      this.count = 1;
   }
-}
+};
